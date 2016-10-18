@@ -75,7 +75,7 @@ exports.delete = function (req, res) {
  * List of Cars
  */
 exports.list = function (req, res) {
-  Cars.find().sort('-created').exec(function (err, cars) {
+  Car.find().sort('-created').exec(function (err, cars) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
