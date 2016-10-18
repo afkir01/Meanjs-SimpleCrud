@@ -24,5 +24,14 @@
       }
     ];
 
+    vm.addCar = function() {
+      console.info('Saving car...');
+
+      console.log('VALUE OF NAME: ', vm.car_name);
+
+
+
+    };
+
   }
 }());
