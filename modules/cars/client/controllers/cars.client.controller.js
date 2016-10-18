@@ -3,12 +3,26 @@
 
   angular
     .module('cars')
-    .controller('CarsController', ArticlesController);
+    .controller('CarsController', CarsController);
 
-  ArticlesController.$inject = ['$scope'];
+  CarsController.$inject = ['$scope'];
 
-  function ArticlesController($scope) {
+  function CarsController($scope) {
+    console.info('Cars Controller Loaded!');
+
     var vm = this;
+
+    vm.cars = [
+      {
+        name: 'Audi'
+      },
+      {
+        name: 'Mercedes'
+      },
+      {
+        name: 'BMW'
+      }
+    ];
 
   }
 }());
