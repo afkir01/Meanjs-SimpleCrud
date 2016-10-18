@@ -1,0 +1,111 @@
+'use strict';
+
+/**
+ * Module dependencies
+ */
+var path = require('path'),
+  mongoose = require('mongoose'),
+  Car = mongoose.model('Car'),
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+
+/**
+ * Create a car
+ */
+exports.create = function (req, res) {
+  var car = new Car(req.body);
+
+  car.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(car);
+    }
+  });
+};
+
+/**
+ * Show the current car
+ */
+exports.read = function (req, res) {
+  // convert mongoose document to JSON
+  var car = req.car ? req.car.toJSON() : {};
+
+  res.json(car);
+};
+
+/**
+ * Update a car
+ */
+exports.update = function (req, res) {
+  var car = req.car;
+
+  car.name = req.body.name;
+
+  car.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(car);
+    }
+  });
+};
+
+/**
+ * Delete a car
+ */
+exports.delete = function (req, res) {
+  var car = req.car;
+
+  car.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(car);
+    }
+  });
+};
+
+/**
+ * List of Cars
+ */
+exports.list = function (req, res) {
+  Cars.find().sort('-created').exec(function (err, cars) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(cars);
+    }
+  });
+};
+
+/**
+ * Cars middleware
+ */
+exports.carByID = function (req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Car is invalid'
+    });
+  }
+
+  Car.findById(id).exec(function (err, car) {
+    if (err) {
+      return next(err);
+    } else if (!car) {
+      return res.status(404).send({
+        message: 'No car with that identifier has been found'
+      });
+    }
+    req.car = car;
+    next();
+  });
+};
