@@ -22,6 +22,15 @@
         data: {
           pageTitle: 'Car List'
         }
+      })
+      .state('cars.create', {
+        url: '/create',
+        templateUrl: '/modules/cars/client/views/create.client.view.html',
+        controller: 'CarsController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Car List'
+        }
       });
   }
 

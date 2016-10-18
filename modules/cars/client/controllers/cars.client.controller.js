@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('cars')
+    .module('cars.routes')
     .controller('CarsController', CarsController);
 
   CarsController.$inject = ['$scope'];
