@@ -17,8 +17,8 @@
       .state('cars.list', {
         url: '',
         templateUrl: '/modules/cars/client/views/list.client.view.html',
-        // controller: 'CarsController',
-        // controllerAs: 'vm',
+        controller: 'CarsController',
+        controllerAs: 'vm',
         data: {
           pageTitle: 'Car List'
         }
@@ -30,16 +30,6 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'Car List'
-        }
-      })
-
-      .state('cars.update', {
-        url: '/update/:carId',
-        templateUrl: '/modules/cars/client/views/update.client.view.html',
-        controller: 'CarsController',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'Car Update'
         }
       });
   }
