@@ -1,11 +1,9 @@
-<h1>Create Car</h1>
+<h1>Update Car</h1>
 
 <form>
   <div class="form-group">
     <label for="name">Name</label>
     <input ng-model="vm.car_name" type="text" class="form-control" id="name" placeholder="Audi...">
+    <button ui-sref="cars.list" ng-click="vm.updateCar({carId: car._id})" class="btn btn-primary">Save</button>
   </div>
 </form>
-
-<button ng-click="vm.addCar();" ui-sref="cars.list" class="btn btn-primary">Save</button>
-<button ui-sref="cars.list" class="btn btn-default">Cancel</button>

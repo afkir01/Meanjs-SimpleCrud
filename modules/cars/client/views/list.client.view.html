@@ -1,3 +1,5 @@
+<div ng-controller="CarsController as vm">
+
 <h1>Car List</h1>
 <table class="table">
   <tr>
@@ -5,9 +7,11 @@
     <th>Actions</th>
   </tr>
   <tr ng-repeat="car in vm.cars">
-    <td>{{ car.name }}</td>
-    <td></td>
+    <td>{{ car.name }} </td>
+    <td><button ui-sref="cars.update({carId: car._id})" ng-click="vm.updateCar({carId: car._id})" class="btn btn-info" style="float: right">Edit</button></td>
+    <td><button   ng-click="" class="btn btn-danger" style="float: right">Delete</button></td>
   </tr>
 </table>
 
 <button ui-sref="cars.create" class="btn btn-primary">Create</button>
+</div>

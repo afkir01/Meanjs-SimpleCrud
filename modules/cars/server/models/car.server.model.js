@@ -20,6 +20,7 @@ var CarSchema = new Schema({
     trim: true,
     required: 'Name cannot be blank'
   }
+
 });
 
 mongoose.model('Car', CarSchema);
