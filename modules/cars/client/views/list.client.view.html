@@ -6,7 +6,8 @@
   </tr>
   <tr ng-repeat="car in vm.cars">
     <td>{{ car.name }}</td>
-    <td></td>
+    <td><button ng-click="vm.deleteCar(car)" class="btn btn-danger">Delete</button></td>
+    <td><button ui-sref="cars.update({carId: car._id})" class="btn btn-info">Edit</button></td>
   </tr>
 </table>
 
